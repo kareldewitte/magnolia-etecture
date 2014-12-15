@@ -16,7 +16,8 @@
   -->
   <properties>
     <magnoliaVersion>5.3.5</magnoliaVersion>
-    <javaVersion>1.6</javaVersion>
+    <javaVersion>1.7</javaVersion>
+    <cxf.version>2.2.3</cxf.version>
   </properties>
 
   <dependencies>
@@ -52,6 +53,28 @@
           <target>${javaVersion}</target>
         </configuration>
       </plugin>
+        <plugin>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-codegen-plugin</artifactId>
+            <version>${cxf.version}</version>
+            <executions>
+                <execution>
+                    <id>generate-sources</id>
+                    <phase>generate-sources</phase>
+                    <configuration>
+                        <sourceRoot>${project.build.directory}/generated-sources</sourceRoot>
+                        <wsdlOptions>
+                            <wsdlOption>
+                                <wsdl>${basedir}/src/main/resources/wsdl/Article.asmx.xml</wsdl>
+                            </wsdlOption>
+                        </wsdlOptions>
+                    </configuration>
+                    <goals>
+                        <goal>wsdl2java</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
     </plugins>
 
     <!-- default resources configuration which will filter the module descriptor -->

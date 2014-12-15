@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://webservice.agronet.ch/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://webservice.agronet.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://webservice.agronet.ch/">
+      <s:element name="GetArticleByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ArticleID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArticleByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArticleByIDResult" type="tns:ArticlePublic" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArticlePublic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Promotions" type="tns:ArrayOfPromotionPublic" />
+          <s:element minOccurs="0" maxOccurs="1" name="gv" type="tns:ArrayOfGridValue" />
+          <s:element minOccurs="0" maxOccurs="1" name="PimLCHde" type="tns:ProductPimLCH" />
+          <s:element minOccurs="0" maxOccurs="1" name="PimLCHfr" type="tns:ProductPimLCH" />
+          <s:element minOccurs="1" maxOccurs="1" name="F200_AnbID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="F003_ArtNr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="F015_BezDeutsch" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="F016_BezFranz" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="F027_SperrCode" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="F032_Preis1" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="F174_Image_Gross" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="SortPosition" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPromotionPublic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PromotionPublic" nillable="true" type="tns:PromotionPublic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PromotionPublic">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="F206_ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="F020_Preis1" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="F010_Gueltigab" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="F011_Gueltigbis" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfGridValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GridValue" nillable="true" type="tns:GridValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GridValue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="GridID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RasterGruppenNr" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="F003_ArtNr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GridValue_D" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GridValue_F" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MasterArtikel" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProductPimLCH">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ArtikelnummerBisonProcess" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Artikelnummer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ERP_Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Produktbeschreibung" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProduktbeschreibungZusatz" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasBigImage" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut5" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut6" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut7" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut8" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut9" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut10" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut1Wert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut2Wert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut3Wert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut4Wert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut5Wert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut6Wert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut7Wert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut8Wert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut9Wert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attribut10Wert" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetArticlesByGroupID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArticlesByGroupIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArticlesByGroupIDResult" type="tns:ArrayOfArticlePublic" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArticlePublic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArticlePublic" nillable="true" type="tns:ArticlePublic" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetArticleSortByGroupID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArticleSortByGroupIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArticleSortByGroupIDResult" type="tns:ArrayOfArticleSort" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArticleSort">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArticleSort" nillable="true" type="tns:ArticleSort" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArticleSort">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="F003_ArtNr" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Position" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetArticlesByGridgroupNr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GridgroupNr" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArticlesByGridgroupNrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArticlesByGridgroupNrResult" type="tns:ArrayOfArticlePublic" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRootGroups">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRootGroupsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRootGroupsResult" type="tns:ArrayOfGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Group" nillable="true" type="tns:Group" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Group">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Ebene" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChildOf" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name_D" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name_F" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateChange" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="AlwaysValid" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="ValidFrom" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ValidUntil" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="SortOrder" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RegioShop" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetChildGroupsByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChildGroupsByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChildGroupsByIDResult" type="tns:ArrayOfGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllGrids">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllGridsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllGridsResult" type="tns:ArrayOfGrid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGrid">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Grid" nillable="true" type="tns:Grid" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Grid">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bez_D" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bez_F" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDate">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDateResult" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArticlePublic" nillable="true" type="tns:ArticlePublic" />
+      <s:element name="ArrayOfArticlePublic" nillable="true" type="tns:ArrayOfArticlePublic" />
+      <s:element name="ArrayOfArticleSort" nillable="true" type="tns:ArrayOfArticleSort" />
+      <s:element name="ArrayOfGroup" nillable="true" type="tns:ArrayOfGroup" />
+      <s:element name="ArrayOfGrid" nillable="true" type="tns:ArrayOfGrid" />
+      <s:element name="dateTime" type="s:dateTime" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetArticleByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArticleByID" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArticleByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArticlesByGroupIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArticlesByGroupID" />
+  </wsdl:message>
+  <wsdl:message name="GetArticlesByGroupIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArticlesByGroupIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleSortByGroupIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArticleSortByGroupID" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleSortByGroupIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArticleSortByGroupIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArticlesByGridgroupNrSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArticlesByGridgroupNr" />
+  </wsdl:message>
+  <wsdl:message name="GetArticlesByGridgroupNrSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArticlesByGridgroupNrResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRootGroupsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRootGroups" />
+  </wsdl:message>
+  <wsdl:message name="GetRootGroupsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRootGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChildGroupsByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChildGroupsByID" />
+  </wsdl:message>
+  <wsdl:message name="GetChildGroupsByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChildGroupsByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllGridsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllGrids" />
+  </wsdl:message>
+  <wsdl:message name="GetAllGridsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllGridsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDate" />
+  </wsdl:message>
+  <wsdl:message name="GetDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleByIDHttpGetIn">
+    <wsdl:part name="ArticleID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleByIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArticlePublic" />
+  </wsdl:message>
+  <wsdl:message name="GetArticlesByGroupIDHttpGetIn">
+    <wsdl:part name="GroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetArticlesByGroupIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfArticlePublic" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleSortByGroupIDHttpGetIn">
+    <wsdl:part name="GroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleSortByGroupIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfArticleSort" />
+  </wsdl:message>
+  <wsdl:message name="GetArticlesByGridgroupNrHttpGetIn">
+    <wsdl:part name="GridgroupNr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetArticlesByGridgroupNrHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfArticlePublic" />
+  </wsdl:message>
+  <wsdl:message name="GetRootGroupsHttpGetIn" />
+  <wsdl:message name="GetRootGroupsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetChildGroupsByIDHttpGetIn">
+    <wsdl:part name="GroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetChildGroupsByIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetAllGridsHttpGetIn" />
+  <wsdl:message name="GetAllGridsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGrid" />
+  </wsdl:message>
+  <wsdl:message name="GetDateHttpGetIn" />
+  <wsdl:message name="GetDateHttpGetOut">
+    <wsdl:part name="Body" element="tns:dateTime" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleByIDHttpPostIn">
+    <wsdl:part name="ArticleID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleByIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArticlePublic" />
+  </wsdl:message>
+  <wsdl:message name="GetArticlesByGroupIDHttpPostIn">
+    <wsdl:part name="GroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetArticlesByGroupIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfArticlePublic" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleSortByGroupIDHttpPostIn">
+    <wsdl:part name="GroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleSortByGroupIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfArticleSort" />
+  </wsdl:message>
+  <wsdl:message name="GetArticlesByGridgroupNrHttpPostIn">
+    <wsdl:part name="GridgroupNr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetArticlesByGridgroupNrHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfArticlePublic" />
+  </wsdl:message>
+  <wsdl:message name="GetRootGroupsHttpPostIn" />
+  <wsdl:message name="GetRootGroupsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetChildGroupsByIDHttpPostIn">
+    <wsdl:part name="GroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetChildGroupsByIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetAllGridsHttpPostIn" />
+  <wsdl:message name="GetAllGridsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGrid" />
+  </wsdl:message>
+  <wsdl:message name="GetDateHttpPostIn" />
+  <wsdl:message name="GetDateHttpPostOut">
+    <wsdl:part name="Body" element="tns:dateTime" />
+  </wsdl:message>
+  <wsdl:portType name="ArticleSoap">
+    <wsdl:operation name="GetArticleByID">
+      <wsdl:input message="tns:GetArticleByIDSoapIn" />
+      <wsdl:output message="tns:GetArticleByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGroupID">
+      <wsdl:input message="tns:GetArticlesByGroupIDSoapIn" />
+      <wsdl:output message="tns:GetArticlesByGroupIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArticleSortByGroupID">
+      <wsdl:input message="tns:GetArticleSortByGroupIDSoapIn" />
+      <wsdl:output message="tns:GetArticleSortByGroupIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGridgroupNr">
+      <wsdl:input message="tns:GetArticlesByGridgroupNrSoapIn" />
+      <wsdl:output message="tns:GetArticlesByGridgroupNrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRootGroups">
+      <wsdl:input message="tns:GetRootGroupsSoapIn" />
+      <wsdl:output message="tns:GetRootGroupsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildGroupsByID">
+      <wsdl:input message="tns:GetChildGroupsByIDSoapIn" />
+      <wsdl:output message="tns:GetChildGroupsByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGrids">
+      <wsdl:input message="tns:GetAllGridsSoapIn" />
+      <wsdl:output message="tns:GetAllGridsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDate">
+      <wsdl:input message="tns:GetDateSoapIn" />
+      <wsdl:output message="tns:GetDateSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ArticleHttpGet">
+    <wsdl:operation name="GetArticleByID">
+      <wsdl:input message="tns:GetArticleByIDHttpGetIn" />
+      <wsdl:output message="tns:GetArticleByIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGroupID">
+      <wsdl:input message="tns:GetArticlesByGroupIDHttpGetIn" />
+      <wsdl:output message="tns:GetArticlesByGroupIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArticleSortByGroupID">
+      <wsdl:input message="tns:GetArticleSortByGroupIDHttpGetIn" />
+      <wsdl:output message="tns:GetArticleSortByGroupIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGridgroupNr">
+      <wsdl:input message="tns:GetArticlesByGridgroupNrHttpGetIn" />
+      <wsdl:output message="tns:GetArticlesByGridgroupNrHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRootGroups">
+      <wsdl:input message="tns:GetRootGroupsHttpGetIn" />
+      <wsdl:output message="tns:GetRootGroupsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildGroupsByID">
+      <wsdl:input message="tns:GetChildGroupsByIDHttpGetIn" />
+      <wsdl:output message="tns:GetChildGroupsByIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGrids">
+      <wsdl:input message="tns:GetAllGridsHttpGetIn" />
+      <wsdl:output message="tns:GetAllGridsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDate">
+      <wsdl:input message="tns:GetDateHttpGetIn" />
+      <wsdl:output message="tns:GetDateHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ArticleHttpPost">
+    <wsdl:operation name="GetArticleByID">
+      <wsdl:input message="tns:GetArticleByIDHttpPostIn" />
+      <wsdl:output message="tns:GetArticleByIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGroupID">
+      <wsdl:input message="tns:GetArticlesByGroupIDHttpPostIn" />
+      <wsdl:output message="tns:GetArticlesByGroupIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArticleSortByGroupID">
+      <wsdl:input message="tns:GetArticleSortByGroupIDHttpPostIn" />
+      <wsdl:output message="tns:GetArticleSortByGroupIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGridgroupNr">
+      <wsdl:input message="tns:GetArticlesByGridgroupNrHttpPostIn" />
+      <wsdl:output message="tns:GetArticlesByGridgroupNrHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRootGroups">
+      <wsdl:input message="tns:GetRootGroupsHttpPostIn" />
+      <wsdl:output message="tns:GetRootGroupsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildGroupsByID">
+      <wsdl:input message="tns:GetChildGroupsByIDHttpPostIn" />
+      <wsdl:output message="tns:GetChildGroupsByIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGrids">
+      <wsdl:input message="tns:GetAllGridsHttpPostIn" />
+      <wsdl:output message="tns:GetAllGridsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDate">
+      <wsdl:input message="tns:GetDateHttpPostIn" />
+      <wsdl:output message="tns:GetDateHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ArticleSoap" type="tns:ArticleSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetArticleByID">
+      <soap:operation soapAction="http://webservice.agronet.ch/GetArticleByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGroupID">
+      <soap:operation soapAction="http://webservice.agronet.ch/GetArticlesByGroupID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticleSortByGroupID">
+      <soap:operation soapAction="http://webservice.agronet.ch/GetArticleSortByGroupID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGridgroupNr">
+      <soap:operation soapAction="http://webservice.agronet.ch/GetArticlesByGridgroupNr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRootGroups">
+      <soap:operation soapAction="http://webservice.agronet.ch/GetRootGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildGroupsByID">
+      <soap:operation soapAction="http://webservice.agronet.ch/GetChildGroupsByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGrids">
+      <soap:operation soapAction="http://webservice.agronet.ch/GetAllGrids" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDate">
+      <soap:operation soapAction="http://webservice.agronet.ch/GetDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArticleSoap12" type="tns:ArticleSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetArticleByID">
+      <soap12:operation soapAction="http://webservice.agronet.ch/GetArticleByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGroupID">
+      <soap12:operation soapAction="http://webservice.agronet.ch/GetArticlesByGroupID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticleSortByGroupID">
+      <soap12:operation soapAction="http://webservice.agronet.ch/GetArticleSortByGroupID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGridgroupNr">
+      <soap12:operation soapAction="http://webservice.agronet.ch/GetArticlesByGridgroupNr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRootGroups">
+      <soap12:operation soapAction="http://webservice.agronet.ch/GetRootGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildGroupsByID">
+      <soap12:operation soapAction="http://webservice.agronet.ch/GetChildGroupsByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGrids">
+      <soap12:operation soapAction="http://webservice.agronet.ch/GetAllGrids" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDate">
+      <soap12:operation soapAction="http://webservice.agronet.ch/GetDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArticleHttpGet" type="tns:ArticleHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetArticleByID">
+      <http:operation location="/GetArticleByID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGroupID">
+      <http:operation location="/GetArticlesByGroupID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticleSortByGroupID">
+      <http:operation location="/GetArticleSortByGroupID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGridgroupNr">
+      <http:operation location="/GetArticlesByGridgroupNr" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRootGroups">
+      <http:operation location="/GetRootGroups" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildGroupsByID">
+      <http:operation location="/GetChildGroupsByID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGrids">
+      <http:operation location="/GetAllGrids" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDate">
+      <http:operation location="/GetDate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArticleHttpPost" type="tns:ArticleHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetArticleByID">
+      <http:operation location="/GetArticleByID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGroupID">
+      <http:operation location="/GetArticlesByGroupID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticleSortByGroupID">
+      <http:operation location="/GetArticleSortByGroupID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticlesByGridgroupNr">
+      <http:operation location="/GetArticlesByGridgroupNr" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRootGroups">
+      <http:operation location="/GetRootGroups" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildGroupsByID">
+      <http:operation location="/GetChildGroupsByID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGrids">
+      <http:operation location="/GetAllGrids" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDate">
+      <http:operation location="/GetDate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Article">
+    <wsdl:port name="ArticleSoap" binding="tns:ArticleSoap">
+      <soap:address location="https://webservice.agronet.ch/Article.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArticleSoap12" binding="tns:ArticleSoap12">
+      <soap12:address location="https://webservice.agronet.ch/Article.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArticleHttpGet" binding="tns:ArticleHttpGet">
+      <http:address location="https://webservice.agronet.ch/Article.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArticleHttpPost" binding="tns:ArticleHttpPost">
+      <http:address location="https://webservice.agronet.ch/Article.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
